@@ -51,8 +51,11 @@ public class CustomAdapter extends BaseAdapter {
         textViewDate.setText("Năm sinh: " + currentStudent.getDate());
         textViewGender.setText("Giới tính: " + currentStudent.getGender());
         textViewAddress.setText("Địa chỉ: " + currentStudent.getAddress());
-        textViewIdNganh.setText("Ngành: " + String.valueOf(currentStudent.getIdNganh()));
-
+//        textViewIdNganh.setText("Ngành: " + String.valueOf(currentStudent.getIdNganh()));
+        // Fetch and set the nameNganh
+        DatabaseHelper dbHelper = new DatabaseHelper(context);
+        String nameNganh = dbHelper.getNganhNameById(currentStudent.getIdNganh(), dbHelper);
+        textViewIdNganh.setText("Ngành: "+nameNganh);
         return convertView;
     }
 }

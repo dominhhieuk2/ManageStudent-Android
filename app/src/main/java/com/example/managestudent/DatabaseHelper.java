@@ -197,6 +197,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return nganhList;
     }
 
+    public static String getNganhNameById(int idNganh, DatabaseHelper dbHelper) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_NAME_NGANH + " FROM " + TABLE_NGANH + " WHERE " + COLUMN_IDNGANH + " = ?", new String[]{String.valueOf(idNganh)});
+
+        String nameNganh = null;
+        if (cursor.moveToFirst()) {
+            nameNganh = cursor.getString(cursor.getColumnIndex(COLUMN_NAME_NGANH));
+        }
+
+        cursor.close();
+        db.close();
+        return nameNganh;
+    }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
