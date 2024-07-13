@@ -68,15 +68,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Method to add Nganh
-    public boolean addNganh(String nameNganh) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME_NGANH, nameNganh);
-
-        long result = db.insert(TABLE_NGANH, null, values);
-        db.close();
-        return result != -1;
-    }
+//    public boolean addNganh(String nameNganh) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues values = new ContentValues();
+//        values.put(COLUMN_NAME_NGANH, nameNganh);
+//
+//        long result = db.insert(TABLE_NGANH, null, values);
+//        db.close();
+//        return result != -1;
+//    }
 
     // Method to get all SinhVien
     public ArrayList<Student> getAllSinhVien() {
@@ -118,15 +118,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Method to update Nganh
-    public boolean updateNganh(int idNganh, String nameNganh) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME_NGANH, nameNganh);
-
-        int result = db.update(TABLE_NGANH, values, COLUMN_IDNGANH + " = ?", new String[]{String.valueOf(idNganh)});
-        db.close();
-        return result > 0;
-    }
+//    public boolean updateNganh(int idNganh, String nameNganh) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues values = new ContentValues();
+//        values.put(COLUMN_NAME_NGANH, nameNganh);
+//
+//        int result = db.update(TABLE_NGANH, values, COLUMN_IDNGANH + " = ?", new String[]{String.valueOf(idNganh)});
+//        db.close();
+//        return result > 0;
+//    }
 
     // Method to delete SinhVien
     public boolean deleteSinhVien(int id) {
@@ -137,12 +137,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Method to delete Nganh
-    public boolean deleteNganh(int idNganh) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        int result = db.delete(TABLE_NGANH, COLUMN_IDNGANH + " = ?", new String[]{String.valueOf(idNganh)});
-        db.close();
-        return result > 0;
-    }
+//    public boolean deleteNganh(int idNganh) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        int result = db.delete(TABLE_NGANH, COLUMN_IDNGANH + " = ?", new String[]{String.valueOf(idNganh)});
+//        db.close();
+//        return result > 0;
+//    }
 
     // Method to validate SinhVien login
     public boolean validateSinhVienLogin(int id, String name) {
@@ -153,6 +153,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return exists;
+    }
+
+    public boolean addNganh(String tenNganh) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_NAME_NGANH, tenNganh);
+
+        long result = db.insert(TABLE_NGANH, null, contentValues);
+        return result != -1;
+    }
+
+    public boolean updateNganh(int nganhId, String tenNganh) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_NAME_NGANH, tenNganh);
+
+        int result = db.update(TABLE_NGANH, contentValues, COLUMN_IDNGANH + "=?", new String[]{String.valueOf(nganhId)});
+        return result > 0;
+    }
+
+    public boolean deleteNganh(int nganhId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int result = db.delete(TABLE_NGANH, COLUMN_IDNGANH + "=?", new String[]{String.valueOf(nganhId)});
+        return result > 0;
+    }
+
+    public ArrayList<Nganh> getAllNganhs() {
+        ArrayList<Nganh> nganhList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NGANH, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int nganhId = cursor.getInt(cursor.getColumnIndex(COLUMN_IDNGANH));
+                String tenNganh = cursor.getString(cursor.getColumnIndex(COLUMN_NAME_NGANH));
+                Nganh nganh = new Nganh(nganhId, tenNganh);
+                nganhList.add(nganh);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return nganhList;
     }
 
 

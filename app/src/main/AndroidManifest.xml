@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ManageStudent"
         tools:targetApi="31">
         <activity
+            android:name=".ViewNganhActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddNganhActivity"
             android:exported="false" />
         <activity

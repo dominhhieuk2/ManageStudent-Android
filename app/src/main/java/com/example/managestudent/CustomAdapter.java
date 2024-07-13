@@ -47,11 +47,11 @@ public class CustomAdapter extends BaseAdapter {
         TextView textViewAddress = convertView.findViewById(R.id.textViewAddress);
         TextView textViewIdNganh = convertView.findViewById(R.id.textViewIdNganh);
 
-        textViewName.setText(currentStudent.getName());
-        textViewDate.setText(currentStudent.getDate());
-        textViewGender.setText(currentStudent.getGender());
-        textViewAddress.setText(currentStudent.getAddress());
-        textViewIdNganh.setText(String.valueOf(currentStudent.getIdNganh()));
+        textViewName.setText("Tên: " + currentStudent.getName());
+        textViewDate.setText("Năm sinh: " + currentStudent.getDate());
+        textViewGender.setText("Giới tính: " + currentStudent.getGender());
+        textViewAddress.setText("Địa chỉ: " + currentStudent.getAddress());
+        textViewIdNganh.setText("Ngành: " + String.valueOf(currentStudent.getIdNganh()));
 
         return convertView;
     }

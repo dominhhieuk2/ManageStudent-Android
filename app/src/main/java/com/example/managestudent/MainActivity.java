@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnAddSinhVien, btnViewSinhVien, btnAddNganh;
+    private Button btnAddSinhVien, btnViewSinhVien, btnAddNganh, btnViewNganh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,11 +18,20 @@ public class MainActivity extends AppCompatActivity {
         btnAddSinhVien = findViewById(R.id.btnAddSinhVien);
         btnViewSinhVien = findViewById(R.id.btnViewSinhVien);
         btnAddNganh = findViewById(R.id.btnAddNganh);
+        btnViewNganh = findViewById(R.id.btnViewNganh);
 
         btnAddSinhVien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddSinhVienActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnViewNganh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ViewNganhActivity.class);
                 startActivity(intent);
             }
         });

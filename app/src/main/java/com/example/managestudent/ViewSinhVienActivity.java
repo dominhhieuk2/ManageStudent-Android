@@ -83,14 +83,14 @@ public class ViewSinhVienActivity extends AppCompatActivity {
                     int idNganh = Integer.parseInt(editTextIdNganh.getText().toString());
 
                     if (dbHelper.updateSinhVien(selectedStudentId, name, date, gender, address, idNganh)) {
-                        Toast.makeText(ViewSinhVienActivity.this, "Data Updated", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ViewSinhVienActivity.this, "Dữ liệu đã được cập nhật!", Toast.LENGTH_SHORT).show();
                         refreshData();
                     } else {
-                        Toast.makeText(ViewSinhVienActivity.this, "Data Not Updated", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ViewSinhVienActivity.this, "Dữ liệu không được cập nhật!", Toast.LENGTH_SHORT).show();
                     }
                     clearForm();
                 } else {
-                    Toast.makeText(ViewSinhVienActivity.this, "No Student Selected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ViewSinhVienActivity.this, "Không sinh viên nào được chọn", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -100,14 +100,14 @@ public class ViewSinhVienActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (selectedStudentId != -1) {
                     if (dbHelper.deleteSinhVien(selectedStudentId)) {
-                        Toast.makeText(ViewSinhVienActivity.this, "Data Deleted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ViewSinhVienActivity.this, "Dữ liệu đã được xóa!", Toast.LENGTH_SHORT).show();
                         refreshData();
                     } else {
-                        Toast.makeText(ViewSinhVienActivity.this, "Data Not Deleted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ViewSinhVienActivity.this, "Dữ liệu chưa được xóa!", Toast.LENGTH_SHORT).show();
                     }
                     clearForm();
                 } else {
-                    Toast.makeText(ViewSinhVienActivity.this, "No Student Selected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ViewSinhVienActivity.this, "Không sinh viên nào được chọn", Toast.LENGTH_SHORT).show();
                 }
             }
         });
